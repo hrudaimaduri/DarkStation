@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://driqyg6bfja7s"]
+
+[ext_resource type="Script" uid="uid://oagtnosdfhgu" path="res://scripts/world.gd" id="1_f3sb7"]
+
+[node name="World" type="Node3D" unique_id=23366280]
+script = ExtResource("1_f3sb7")
+
+[node name="Floor" type="CSGBox3D" parent="." unique_id=222485315]
+use_collision = true
+size = Vector3(20, 0.2, 20)
+
+[node name="Wall" type="CSGBox3D" parent="." unique_id=796436401]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -5)
+size = Vector3(4, 3, 1)
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=521414560]
+_spawnable_scenes = PackedStringArray("uid://lcpdyratywxm", "uid://cc1ty4422h7rw")
+spawn_path = NodePath("..")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=825221362]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=373359080]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HostButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=292854349]
+layout_mode = 2
+text = "Host
+"
+
+[node name="JoinButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=959144588]
+layout_mode = 2
+text = "Join
+"
+
+[node name="MeetingUI" type="Panel" parent="CanvasLayer" unique_id=191555053]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -210.0
+offset_right = 250.0
+offset_bottom = 210.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MeetingTitle" type="Label" parent="CanvasLayer/MeetingUI" unique_id=758170771]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 20.0
+offset_right = 450.0
+offset_bottom = 69.0
+text = "EMERGENCY MEETING"
+horizontal_alignment = 1
+
+[node name="TimerLabel" type="Label" parent="CanvasLayer/MeetingUI" unique_id=593598656]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 75.0
+offset_right = 450.0
+offset_bottom = 124.0
+text = "Voting Time: 30s
+"
+horizontal_alignment = 1
+
+[node name="VoteButtonsContainer" type="VBoxContainer" parent="CanvasLayer/MeetingUI" unique_id=2117580024]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 125.0
+offset_right = 425.0
+offset_bottom = 275.0
+
+[node name="SkipVoteButton" type="Button" parent="CanvasLayer/MeetingUI" unique_id=793750927]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 295.0
+offset_right = 350.0
+offset_bottom = 335.0
+text = "Skip Vote."
+
+[node name="ResultLabel" type="Label" parent="CanvasLayer/MeetingUI" unique_id=1318450409]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 0
+offset_left = 50.0
+offset_top = 350.0
+offset_right = 450.0
+offset_bottom = 400.0
+text = "``"
+horizontal_alignment = 1
+autowrap_mode = 2

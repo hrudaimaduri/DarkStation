@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://lcpdyratywxm"]
+
+[ext_resource type="Script" uid="uid://b34g8bykp3v2o" path="res://scripts/player.gd" id="1_4flbx"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_srdbx"]
+radius = 0.4
+height = 1.8
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_4flbx"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("Head:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:flashlight_on")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_srdbx"]
+radius = 0.4
+height = 1.8
+
+[node name="Player" type="CharacterBody3D" unique_id=929735539]
+script = ExtResource("1_4flbx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=299981937]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_srdbx")
+
+[node name="Head" type="Node3D" parent="." unique_id=1235589440]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=1777717733]
+
+[node name="Flashlight" type="SpotLight3D" parent="Head/Camera3D" unique_id=532731039]
+light_color = Color(1, 0.96862745, 0.9019608, 1)
+shadow_enabled = true
+spot_range = 18.0
+spot_angle = 35.0
+
+[node name="KillRay" type="RayCast3D" parent="Head/Camera3D" unique_id=2104975152]
+target_position = Vector3(0, 0, -2.5)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1180739409]
+replication_config = SubResource("SceneReplicationConfig_4flbx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1770995775]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+mesh = SubResource("CapsuleMesh_srdbx")
